@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
-
 import Entities.Departament;
 import Entities.HoursContrats;
 import Entities.Worker;
@@ -21,7 +20,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
         System.out.print("Enter with department's name: ");
         String departmentName = sc.nextLine();
 
-        System.out.print("Enter with Worker data: ");
+        System.out.println("Enter with Worker data: ");
 
         System.out.print("name: ");
         String workerName = sc.nextLine();
@@ -38,7 +37,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
         int contractsQuantities = sc.nextInt();
 
       
-        int n = sc.nextInt();
+        int n = contractsQuantities;
         for (int i=1; i<= n ; i++ ){
 
             System.out.print("Enter contract n° " + i + "data: " );
@@ -51,23 +50,25 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
             System.out.print("Duration (hours)");
             int hours = sc.nextInt();
 
-            HoursContrats contratc = new HoursContrats(contractDate, baseSalary, hours);
+            HoursContrats contratc = new HoursContrats(contractDate, valuePerHour, hours);
 
-
-
-
+worker.addContract(contratc);
 
         }
 
-    
+System.out.println();
 
+        System.out.print("Enter month and year to calculate income (MM/YYYY)");
+        String montAndYear = sc.next();
 
+        int month = Integer.parseInt(montAndYear.substring(0, 2));
+        int year = Integer.parseInt(montAndYear.substring(3));
 
+        System.out.println("Name: " + worker.getName());
+        System.out.println("Department: " + worker.getDepartment().getName());
+        System.out.println("Income for: " + montAndYear + ": " + String.format("%.2f", worker.income(year, month)));
 
-
-
-
-
+     
         sc.close();
 
 
